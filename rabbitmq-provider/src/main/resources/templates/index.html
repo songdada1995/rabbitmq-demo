@@ -1,0 +1,242 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="/static/plugins/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="/static/plugins/layer/skin/layer.css"/>
+    <title>首页</title>
+    <style>
+        table, td, th {
+            border: 1px solid green;
+        }
+
+        th {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<p/>
+<div>
+    填写hello消息：<input id="hello-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendMsg()"/>
+</div>
+
+<p/>
+<div>
+    填写TopicExchange1消息：<input id="topic-exchange1-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendTopicExchange1Msg()"/>
+</div>
+
+<p/>
+<div>
+    填写TopicExchange1 Error消息：<input id="topic-exchange1-errorMsg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendTopicExchange1ErrorMsg()"/>
+</div>
+
+<p/>
+<div>
+    填写TopicExchange2消息：<input id="topic-exchange2-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendTopicExchange2Msg()"/>
+</div>
+
+<p/>
+<div>
+    填写FanoutExchange消息：<input id="fanout-exchange-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendFanoutExchangeMsg()"/>
+</div>
+
+<p/>
+<div>
+    填写DirectQueue1消息：<input id="direct-queue1-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendDirectQueue1Msg()"/>
+</div>
+
+<p/>
+<div>
+    填写DirectQueue2消息：<input id="direct-queue2-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendDirectQueue2Msg()"/>
+</div>
+
+<p/>
+<div>
+    填写HeadersExchange消息：<input id="headers-exchange-msg" name="message"/>
+    <input type="button" value="发送消息" onclick="sendHeadersExchangeMsg()"/>
+</div>
+
+
+<script type="text/javascript">
+    function sendMsg() {
+        let params = {"message": $("#hello-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/hello/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: "json", // 返回数据类型
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendTopicExchange1Msg() {
+        let params = {"message": $("#topic-exchange1-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/topic_exchange1/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendTopicExchange1ErrorMsg() {
+        let params = {"message": $("#topic-exchange1-errorMsg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/topic_exchange1/sendErrorMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendTopicExchange2Msg() {
+        let params = {"message": $("#topic-exchange2-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/topic_exchange2/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendFanoutExchangeMsg() {
+        let params = {"message": $("#fanout-exchange-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/fanout/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendDirectQueue1Msg() {
+        let params = {"message": $("#direct-queue1-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/direct/queue1/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendDirectQueue2Msg() {
+        let params = {"message": $("#direct-queue2-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/direct/queue2/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+    function sendHeadersExchangeMsg() {
+        let params = {"message": $("#headers-exchange-msg").val()};
+        $.ajax({
+            type: "POST",
+            url: "/provider/headers/sendMsg",
+            data: JSON.stringify(params),
+            contentType: 'application/json', // 发送数据类型
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    layer.msg(data.data, {time: 2000, icon: 1});
+                } else {
+                    layer.msg(data.error.message, {time: 2000, icon: 2});
+                }
+            },
+            error: function (e) {
+                layer.msg("Net error ,try later.", {time: 2000, icon: 2});
+            }
+        });
+    }
+
+</script>
+
+</html>

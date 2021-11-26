@@ -1,0 +1,40 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: mycloud-rabbitmq-provider
+
+  datasource:
+    primary:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&autoReconnect=true
+      username: root
+      password: root
+
+      remove-abandoned: true
+      remove-abandoned-timeout: 10000
+      log-abandoned: true
+      max-active: 50
+      min-idle: 5
+      initial-size: 5
+      max-wait: 10000
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: true
+      test-while-idle: true
+      time-between-eviction-runs-millis: 20000
+
+  # rabbitMQ
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+# thread pool
+thread:
+  pool:
+    corePoolSize: 8
+    maximumPoolSize: 10
+    keepAliveTime: 100
+    capacity: 20
